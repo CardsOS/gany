@@ -75,33 +75,28 @@
 <span id="75">75</span>
 <span id="76">76</span>
 <span id="77">77</span>
-<span id="78">78</span>
-<span id="79">79</span>
-<span id="80">80</span>
-<span id="81">81</span>
 </pre><pre class="rust">
 <span class="kw">use</span> <span class="ident">anyhow::Context</span>;
-<span class="kw">use</span> <span class="ident">std::io::Write</span>;
-<span class="kw">use</span> <span class="ident">std::io::BufWriter</span>;
+<span class="kw">use</span> <span class="ident">std::env</span>;
 <span class="kw">use</span> <span class="ident">std::fs</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
+<span class="kw">use</span> <span class="ident">std::io::BufWriter</span>;
+<span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
-<span class="kw">use</span> <span class="ident">std::env</span>;
 
 <span class="doccomment">/// Add a package to your software installation</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `PACKAGE_NAME` - Path to a Mokk (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>)
-{
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
     <span class="kw">let</span> <span class="ident">package_name</span> <span class="op">=</span> <span class="ident">matches</span>
-    .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
-    .<span class="ident">unwrap</span>();
-<span class="ident">env::set_current_dir</span>(<span class="ident">package_name</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">package_name</span>))
-    .<span class="ident">unwrap</span>();
+        .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
+        .<span class="ident">unwrap</span>();
+    <span class="ident">env::set_current_dir</span>(<span class="ident">package_name</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">package_name</span>))
+        .<span class="ident">unwrap</span>();
 }
 
 <span class="doccomment">/// Drop a package from your software installation</span>
@@ -109,41 +104,35 @@
 <span class="doccomment">/// # Arguments</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `PACKAGE_NAME` - Path to a Mokk (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>)
-{
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
     <span class="kw">let</span> <span class="ident">package_name</span> <span class="op">=</span> <span class="ident">matches</span>
-    .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
-    .<span class="ident">unwrap</span>();
-<span class="ident">env::set_current_dir</span>(<span class="ident">package_name</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">package_name</span>))
-    .<span class="ident">unwrap</span>();
+        .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
+        .<span class="ident">unwrap</span>();
+    <span class="ident">env::set_current_dir</span>(<span class="ident">package_name</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">package_name</span>))
+        .<span class="ident">unwrap</span>();
 }
 
 <span class="doccomment">/// Refresh the local package repository with one from a remote software distribution</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">refresh_remote_packages</span>() {
-
-}
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">refresh_remote_packages</span>() {}
 
 <span class="doccomment">/// Upgrade your local packages with newer versions held in a remote software distribution</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upgrade_packages</span>() {
-
-}
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upgrade_packages</span>() {}
 
 <span class="doccomment">/// Package a piece of software for future distribution</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `PATH` - Path to a Mokk (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>)
-{
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
     <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">matches</span>
-    .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
-    .<span class="ident">unwrap</span>();
-<span class="ident">env::set_current_dir</span>(<span class="ident">path</span>)
-    .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">path</span>))
-    .<span class="ident">unwrap</span>();
+        .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a Mokk was given&quot;</span>.<span class="ident">to_string</span>())
+        .<span class="ident">unwrap</span>();
+    <span class="ident">env::set_current_dir</span>(<span class="ident">path</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a Mokk at {}&quot;</span>, <span class="ident">path</span>))
+        .<span class="ident">unwrap</span>();
 }
 
 <span class="doccomment">/// Write a file to the filesystem</span>
@@ -158,9 +147,13 @@
     <span class="ident">fs::create_dir_all</span>(<span class="ident">Path::new</span>(<span class="ident">path</span>).<span class="ident">parent</span>().<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>(); <span class="comment">// Create output path, write to file</span>
     <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">unwrap</span>(); <span class="comment">// Create file which we will write to</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffered_writer</span> <span class="op">=</span> <span class="ident">BufWriter::new</span>(<span class="ident">file</span>); <span class="comment">// Create a buffered writer, allowing us to modify the file we&#39;ve just created</span>
-    <span class="ident">buffered_writer</span>.<span class="ident">write_all</span>(<span class="ident">data_to_write</span>).<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not write data to {}&quot;</span>, <span class="ident">path</span>)).<span class="ident">unwrap</span>(); <span class="comment">// Write data to file</span>
+    <span class="ident">buffered_writer</span>
+        .<span class="ident">write_all</span>(<span class="ident">data_to_write</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not write data to {}&quot;</span>, <span class="ident">path</span>))
+        .<span class="ident">unwrap</span>(); <span class="comment">// Write data to file</span>
     <span class="ident">buffered_writer</span>.<span class="ident">flush</span>().<span class="ident">unwrap</span>(); <span class="comment">// Empty out the data from memory after we&#39;ve written to the file</span>
-}</pre></div>
+}
+</pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gany" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
 </body></html>
