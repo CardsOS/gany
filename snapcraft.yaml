@@ -1,0 +1,20 @@
+name: gany
+title: Gany
+version: git
+summary: Performant package manager written in Rust.
+description: |
+  Gany is a performant package manager written in Rust.
+license: AGPL-3.0
+
+base: core20
+grade: stable
+confinement: strict
+
+parts:
+  dokkoo:
+    plugin: rust
+    source: .
+
+apps:
+  dokkoo:
+    command: bin/gany
