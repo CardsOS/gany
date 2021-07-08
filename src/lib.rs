@@ -5,6 +5,25 @@ use std::fs::File;
 use std::io::BufWriter;
 use std::io::Write;
 use std::path::Path;
+use std::option::Option;
+use serde::{Serialize, Deserialize};
+
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+/// The data associated with a package
+pub struct Package {
+    /// The CPU architecture intended for use with the packaged binaries
+    pub arch: String,
+    /// The description of the package
+    pub description: String,
+    /// The version of the packaged software
+    pub version: String,
+    /// The package names, along with their versions, that a package depends on
+    pub dependencies: Option<Vec<(String, String)>>,
+    /// The files that a package owns, including potential ghost files
+    pub files: Vec<String>,
+    /// The SHA3-256 hash of the LZ4-compressed archive the software is packaged in
+    pub keccak: String,
+}
 
 /// Add a package to your software installation
 ///
@@ -14,10 +33,7 @@ use std::path::Path;
 pub fn add_package(matches: &clap::ArgMatches) {
     let package_name = matches
         .value_of("PACKAGE_NAME")
-        .with_context(|| "No path to a Mokk was given".to_string())
-        .unwrap();
-    env::set_current_dir(package_name)
-        .with_context(|| format!("Could not read a Mokk at {}", package_name))
+        .with_context(|| "No package name was given".to_string())
         .unwrap();
 }
 
@@ -29,10 +45,7 @@ pub fn add_package(matches: &clap::ArgMatches) {
 pub fn drop_package(matches: &clap::ArgMatches) {
     let package_name = matches
         .value_of("PACKAGE_NAME")
-        .with_context(|| "No path to a Mokk was given".to_string())
-        .unwrap();
-    env::set_current_dir(package_name)
-        .with_context(|| format!("Could not read a Mokk at {}", package_name))
+        .with_context(|| "No package name was given".to_string())
         .unwrap();
 }
 
