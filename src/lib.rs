@@ -1,12 +1,12 @@
 use anyhow::Context;
+use serde::{Deserialize, Serialize};
 use std::env;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
 use std::io::Write;
-use std::path::Path;
 use std::option::Option;
-use serde::{Serialize, Deserialize};
+use std::path::Path;
 
 #[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
 /// The data associated with a package
