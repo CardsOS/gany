@@ -75,13 +75,16 @@ pub fn create_package(matches: &clap::ArgMatches) {
 
     let package_source_path = format!("{}/src/", path);
     let human_package_meta_file_path = format!("{}/manifest.yaml", path);
-    let human_package_meta_file = fs::read_to_string(human_package_meta_file_path).expect("Unable to read package information");
-    let mut package_object: Package = serde_yaml::from_str(&human_package_meta_file).expect("Unable to process package information");
+    let human_package_meta_file = fs::read_to_string(human_package_meta_file_path)
+        .expect("Unable to read package information");
+    let mut package_object: Package = serde_yaml::from_str(&human_package_meta_file)
+        .expect("Unable to process package information");
     let bin_package_meta_output_path = format!("{}/out/{}.ganyinf", path, package_object.name);
     let package_output_path = format!("{}/out/{}.gany", path, package_object.name);
 
     let mut tar = tar::Builder::new(Vec::new());
-    tar.append_dir_all(".", package_source_path).expect("Failed to write archive");
+    tar.append_dir_all(".", package_source_path)
+        .expect("Failed to write archive");
     tar.finish().expect("Unable to finish writing archive");
     let tar_bytes: &Vec<u8> = tar.get_ref();
     let package_archive_file = lz4_flex::compress_prepend_size(tar_bytes);
@@ -95,7 +98,10 @@ pub fn create_package(matches: &clap::ArgMatches) {
 
     let uncompressed_size_bytes: [u8; 4] = package_archive_file[0..4].try_into().unwrap();
     let uncompressed_size: u32 = u32::from_le_bytes(uncompressed_size_bytes);
-    println!("Wrote package '{}' to filesystem (path:{}, size: {} bytes, SHA3-256: {:x})", package_object.name, package_output_path, uncompressed_size, package_archive_hash);
+    println!(
+        "Wrote package '{}' to filesystem (path:{}, size: {} bytes, SHA3-256: {:x})",
+        package_object.name, package_output_path, uncompressed_size, package_archive_hash
+    );
 }
 
 /// Write a file to the filesystem
