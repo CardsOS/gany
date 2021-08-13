@@ -90,8 +90,8 @@ fn main() {
             lib::create_package(package_matches);
         }
         Some(("extract", package_matches)) => {
-          lib::extract_package(package_matches);
-      }
+            lib::extract_package(package_matches);
+        }
         None => println!("{}", APP.get_about().unwrap()),
         _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!()
     }
