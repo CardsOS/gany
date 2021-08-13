@@ -1,3 +1,6 @@
+use std::io::Bytes;
+use std::path::PathBuf;
+use std::io::Read;
 use anyhow::Context;
 use serde::{Deserialize, Serialize};
 use sha3::Digest;
@@ -33,7 +36,7 @@ pub struct Package {
 ///
 /// # Arguments
 ///
-/// * `PACKAGE_NAME` - Path to a Mokk (required)
+/// * `PACKAGE_NAME` - Name of a package (required)
 pub fn add_package(matches: &clap::ArgMatches) {
     let package_name = matches
         .value_of("PACKAGE_NAME")
@@ -45,7 +48,7 @@ pub fn add_package(matches: &clap::ArgMatches) {
 ///
 /// # Arguments
 ///
-/// * `PACKAGE_NAME` - Path to a Mokk (required)
+/// * `PACKAGE_NAME` - Name of a package (required)
 pub fn drop_package(matches: &clap::ArgMatches) {
     let package_name = matches
         .value_of("PACKAGE_NAME")
@@ -63,7 +66,7 @@ pub fn upgrade_packages() {}
 ///
 /// # Arguments
 ///
-/// * `PATH` - Path to a Mokk (required)
+/// * `PATH` - Path to a package source (required)
 pub fn create_package(matches: &clap::ArgMatches) {
     let path = matches
         .value_of("PATH")
@@ -77,8 +80,8 @@ pub fn create_package(matches: &clap::ArgMatches) {
     let human_package_meta_file_path = format!("{}/manifest.yaml", path);
     let human_package_meta_file = fs::read_to_string(human_package_meta_file_path).expect("Unable to read package information");
     let mut package_object: Package = serde_yaml::from_str(&human_package_meta_file).expect("Unable to process package information");
-    let bin_package_meta_output_path = format!("{}/out/{}.ganyinf", path, package_object.name);
-    let package_output_path = format!("{}/out/{}.gany", path, package_object.name);
+    let bin_package_meta_output_path = format!("{}/out/{}-{}-{}.ganyinf", path, package_object.arch, package_object.name, package_object.version);
+    let package_output_path = format!("{}/out/{}-{}-{}.gany", path, package_object.arch, package_object.name, package_object.version);
 
     let mut tar = tar::Builder::new(Vec::new());
     tar.append_dir_all(".", package_source_path).expect("Failed to write archive");
@@ -95,7 +98,36 @@ pub fn create_package(matches: &clap::ArgMatches) {
 
     let uncompressed_size_bytes: [u8; 4] = package_archive_file[0..4].try_into().unwrap();
     let uncompressed_size: u32 = u32::from_le_bytes(uncompressed_size_bytes);
-    println!("Wrote package '{}' to filesystem (path:{}, size: {} bytes, SHA3-256: {:x})", package_object.name, package_output_path, uncompressed_size, package_archive_hash);
+    println!("Wrote package '{}' to filesystem (path: {}, uncompressed size: {} bytes, SHA3-256: {:x})", package_object.name, package_output_path, uncompressed_size, package_archive_hash);
+}
+
+/// Extract a software package
+///
+/// # Arguments
+///
+/// * `PATH` - Path to a package file (required)
+pub fn extract_package(matches: &clap::ArgMatches) {
+    let path = matches
+        .value_of("PATH")
+        .with_context(|| "No path to a package was given".to_string())
+        .unwrap();
+    let path_buf = PathBuf::from(path);
+    let package_file_name = path_buf.file_stem().unwrap().to_str().unwrap();
+    let package_parent_directory = path_buf.parent().unwrap().to_str().unwrap();
+    env::set_current_dir(package_parent_directory)
+        .with_context(|| format!("Could not access parent directory of package file ({})", package_parent_directory))
+        .unwrap();
+
+    let package_file = File::open(path).expect("Could not open package file");
+    let package_file_bytes = fs::read(path).expect("Could not read package file");
+    let package_extract_path = format!("{}/{}-contents/", package_parent_directory, package_file_name);
+
+    let decompressed_package = lz4_flex::decompress_size_prepended(&package_file_bytes).expect("Could not decompress package file");
+    let decompressed_package_bytes = &decompressed_package[..];
+    let mut extracted_package = tar::Archive::new(decompressed_package_bytes);
+    extracted_package.unpack(&package_extract_path).expect("Could not unpack package");
+
+    println!("Extracted package file '{}' to filesystem (path: {})", package_file_name, package_extract_path);
 }
 
 /// Write a file to the filesystem

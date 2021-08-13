@@ -38,6 +38,10 @@ lazy_static! {
             (about: "Package a piece of software for future distribution")
             (@arg PATH: +required +takes_value "Path to some software")
         )
+        (@subcommand extract =>
+          (about: "Extract a software package")
+          (@arg PATH: +required +takes_value "Path to a package")
+      )
     );
 
     /// The arguments passed to the Gany CLI
@@ -85,6 +89,9 @@ fn main() {
         Some(("package", package_matches)) => {
             lib::create_package(package_matches);
         }
+        Some(("extract", package_matches)) => {
+          lib::extract_package(package_matches);
+      }
         None => println!("{}", APP.get_about().unwrap()),
         _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!()
     }
