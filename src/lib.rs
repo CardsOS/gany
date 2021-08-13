@@ -84,7 +84,8 @@ pub fn create_package(matches: &clap::ArgMatches) {
     let package_output_path = format!("{}/out/{}-{}-{}.gany", path, package_object.arch, package_object.name, package_object.version);
 
     let mut tar = tar::Builder::new(Vec::new());
-    tar.append_dir_all(".", package_source_path).expect("Failed to write archive");
+    tar.append_dir_all(".", package_source_path)
+        .expect("Failed to write archive");
     tar.finish().expect("Unable to finish writing archive");
     let tar_bytes: &Vec<u8> = tar.get_ref();
     let package_archive_file = lz4_flex::compress_prepend_size(tar_bytes);
