@@ -183,8 +183,8 @@
 <span class="kw">use</span> <span class="ident">std::fs</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
 <span class="kw">use</span> <span class="ident">std::io::BufWriter</span>;
-<span class="kw">use</span> <span class="ident">std::io::Bytes</span>;
-<span class="kw">use</span> <span class="ident">std::io::Read</span>;
+
+
 <span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::option::Option</span>;
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
@@ -215,7 +215,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `PACKAGE_NAME` - Name of a package (required)</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">package_name</span> <span class="op">=</span> <span class="ident">matches</span>
+    <span class="kw">let</span> <span class="ident">_package_name</span> <span class="op">=</span> <span class="ident">matches</span>
         .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
         .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No package name was given&quot;</span>.<span class="ident">to_string</span>())
         .<span class="ident">unwrap</span>();
@@ -227,7 +227,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `PACKAGE_NAME` - Name of a package (required)</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">package_name</span> <span class="op">=</span> <span class="ident">matches</span>
+    <span class="kw">let</span> <span class="ident">_package_name</span> <span class="op">=</span> <span class="ident">matches</span>
         .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
         .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No package name was given&quot;</span>.<span class="ident">to_string</span>())
         .<span class="ident">unwrap</span>();
@@ -312,7 +312,7 @@
         })
         .<span class="ident">unwrap</span>();
 
-    <span class="kw">let</span> <span class="ident">package_file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not open package file&quot;</span>);
+    <span class="kw">let</span> <span class="ident">_package_file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not open package file&quot;</span>);
     <span class="kw">let</span> <span class="ident">package_file_bytes</span> <span class="op">=</span> <span class="ident">fs::read</span>(<span class="ident">path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not read package file&quot;</span>);
     <span class="kw">let</span> <span class="ident">package_extract_path</span> <span class="op">=</span> <span class="macro">format!</span>(
         <span class="string">&quot;{}/{}-contents/&quot;</span>,
