@@ -6,8 +6,8 @@ use std::env;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
-use std::io::Bytes;
-use std::io::Read;
+
+
 use std::io::Write;
 use std::option::Option;
 use std::path::Path;
@@ -38,7 +38,7 @@ pub struct Package {
 ///
 /// * `PACKAGE_NAME` - Name of a package (required)
 pub fn add_package(matches: &clap::ArgMatches) {
-    let package_name = matches
+    let _package_name = matches
         .value_of("PACKAGE_NAME")
         .with_context(|| "No package name was given".to_string())
         .unwrap();
@@ -50,7 +50,7 @@ pub fn add_package(matches: &clap::ArgMatches) {
 ///
 /// * `PACKAGE_NAME` - Name of a package (required)
 pub fn drop_package(matches: &clap::ArgMatches) {
-    let package_name = matches
+    let _package_name = matches
         .value_of("PACKAGE_NAME")
         .with_context(|| "No package name was given".to_string())
         .unwrap();
@@ -135,7 +135,7 @@ pub fn extract_package(matches: &clap::ArgMatches) {
         })
         .unwrap();
 
-    let package_file = File::open(path).expect("Could not open package file");
+    let _package_file = File::open(path).expect("Could not open package file");
     let package_file_bytes = fs::read(path).expect("Could not read package file");
     let package_extract_path = format!(
         "{}/{}-contents/",
