@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["gany"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/serde/1.0.127/serde/ser/trait.Serialize.html\" title=\"trait serde::ser::Serialize\">Serialize</a> for <a class=\"struct\" href=\"gany/struct.Package.html\" title=\"struct gany::Package\">Package</a>","synthetic":false,"types":["gany::Package"]}];
+implementors["gany"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/serde/1.0.128/serde/ser/trait.Serialize.html\" title=\"trait serde::ser::Serialize\">Serialize</a> for <a class=\"struct\" href=\"gany/struct.Package.html\" title=\"struct gany::Package\">Package</a>","synthetic":false,"types":["gany::Package"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
