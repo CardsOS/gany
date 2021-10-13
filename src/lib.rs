@@ -32,6 +32,19 @@ pub struct Package {
     pub keccak: String,
 }
 
+#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+/// The data associated with a repository
+pub struct Repository {
+    /// The CPU architecture the repository supports
+    pub arch: String,
+    /// The name of the repository
+    pub name: String,
+    /// The description of the repository
+    pub description: String,
+    /// The address (URL or IP) of the repository
+    pub address: String,
+}
+
 /// Add a package to your software installation
 ///
 /// # Arguments
@@ -173,4 +186,18 @@ pub fn write_file(path: &str, data_to_write: &[u8]) {
         .with_context(|| format!("Could not write data to {}", path))
         .unwrap(); // Write data to file
     buffered_writer.flush().unwrap(); // Empty out the data from memory after we've written to the file
+}
+
+
+/// Load repository data from filesystem into memory
+pub fn load_repositories() -> Vec<String>
+{
+    let repositories_file = &fs::read("");
+    if let Ok(file) = repositories_file {
+        let repositories: Vec<String> = bincode::deserialize(file).unwrap();
+        return repositories
+    } else {
+        // Make file, then call function again
+        load_repositories()
+    }
 }
