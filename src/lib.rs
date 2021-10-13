@@ -7,7 +7,6 @@ use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
 
-
 use std::io::Write;
 use std::option::Option;
 use std::path::Path;
@@ -188,14 +187,12 @@ pub fn write_file(path: &str, data_to_write: &[u8]) {
     buffered_writer.flush().unwrap(); // Empty out the data from memory after we've written to the file
 }
 
-
 /// Load repository data from filesystem into memory
-pub fn load_repositories() -> Vec<String>
-{
+pub fn load_repositories() -> Vec<String> {
     let repositories_file = &fs::read("");
     if let Ok(file) = repositories_file {
         let repositories: Vec<String> = bincode::deserialize(file).unwrap();
-        return repositories
+        return repositories;
     } else {
         // Make file, then call function again
         load_repositories()
