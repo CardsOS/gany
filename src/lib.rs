@@ -192,7 +192,7 @@ pub fn load_repositories() -> Vec<String> {
     let repositories_file = &fs::read("");
     if let Ok(file) = repositories_file {
         let repositories: Vec<String> = bincode::deserialize(file).unwrap();
-        return repositories;
+        repositories
     } else {
         // Make file, then call function again
         load_repositories()
