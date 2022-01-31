@@ -63,7 +63,7 @@ fn main() {
 
     println!(
         "
-    Gany  Copyright (C) 2021  Emil Sayahi
+    Gany  Copyright (C) 2021, 2022  Emil Sayahi
     This program comes with ABSOLUTELY NO WARRANTY; for details type `gany show -w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `gany show -c' for details.
