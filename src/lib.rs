@@ -192,7 +192,7 @@ pub fn load_repositories() -> Vec<Repository> {
     let repositories_file = &fs::read("/etc/gany/repos.sd");
     if let Ok(file) = repositories_file {
         let repositories: Vec<Repository> = bincode::deserialize(file).unwrap();
-        return repositories;
+        repositories
     } else {
         // Make file, then call function again
         load_repositories()
