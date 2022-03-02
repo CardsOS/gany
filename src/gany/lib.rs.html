@@ -475,7 +475,7 @@
     <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">client</span>
         .<span class="ident">get</span>(<span class="ident">url</span>)
         .<span class="ident">send</span>()
-        .<span class="ident">expect</span>(<span class="macro">format!</span>(<span class="string">&quot;Unable to download repository data from \&#39;{}\&#39; … &quot;</span>, <span class="ident">url</span>).<span class="ident">as_str</span>());
+        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">panic!</span>(<span class="string">&quot;Unable to download repository data from \&#39;{}\&#39; … &quot;</span>, <span class="ident">url</span>));
     <span class="kw">let</span> <span class="ident">repo</span>: <span class="ident">Repository</span> <span class="op">=</span> <span class="ident">bincode::deserialize</span>(<span class="ident">response</span>.<span class="ident">text</span>().<span class="ident">unwrap</span>().<span class="ident">as_bytes</span>()).<span class="ident">unwrap</span>();
     <span class="ident">repos</span>.<span class="ident">push</span>(<span class="ident">repo</span>.<span class="ident">clone</span>());
     <span class="ident">repo</span>
