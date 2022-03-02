@@ -214,7 +214,7 @@ pub fn push_repository(
     let response = client
         .get(url)
         .send()
-        .expect(format!("Unable to download repository data from \'{}\' … ", url).as_str());
+        .unwrap_or_else(|_| panic!("Unable to download repository data from \'{}\' … ", url));
     let repo: Repository = bincode::deserialize(response.text().unwrap().as_bytes()).unwrap();
     repos.push(repo.clone());
     repo
