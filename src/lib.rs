@@ -6,7 +6,6 @@ use std::env;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
-
 use std::io::Write;
 use std::option::Option;
 use std::path::Path;
@@ -24,7 +23,9 @@ pub struct Package {
     /// The version of the packaged software
     pub version: String,
     /// The package names, along with their versions, that a package depends on
-    pub dependencies: Option<Vec<(String, String)>>,
+    pub dependencies: Option<Vec<(String, Option<String>)>>,
+    /// The package names, along with their versions, that a package conflicts with
+    pub conflicts: Option<Vec<(String, Option<String>)>>,
     /// The files that a package owns, including potential ghost files
     pub files: Vec<String>,
     /// The SHA3-256 hash of the LZ4-compressed archive the software is packaged in
@@ -42,6 +43,8 @@ pub struct Repository {
     pub description: String,
     /// The address (URL or IP) of the repository
     pub address: String,
+    /// The packages within this repository
+    pub packages: Vec<Package>,
 }
 
 /// Add a package to your software installation
@@ -187,6 +190,45 @@ pub fn write_file(path: &str, data_to_write: &[u8]) {
     buffered_writer.flush().unwrap(); // Empty out the data from memory after we've written to the file
 }
 
+pub fn add_repository(matches: &clap::ArgMatches) {
+    let url = matches
+        .value_of("PATH")
+        .with_context(|| "No path to a package was given".to_string())
+        .unwrap();
+    add_repository_with_url(url.to_owned());
+}
+
+pub fn add_repository_with_url(url: String) -> Repository {
+    let mut repos = load_repositories();
+    let client = reqwest::blocking::Client::new();
+    let repo = push_repository(&url, &mut repos, &client);
+    write_file("/etc/gany/repos.sd", &bincode::serialize(&repos).unwrap());
+    repo
+}
+
+pub fn push_repository(
+    url: &str,
+    repos: &mut Vec<Repository>,
+    client: &reqwest::blocking::Client,
+) -> Repository {
+    let response = client
+        .get(url)
+        .send()
+        .expect(format!("Unable to download repository data from \'{}\' … ", url).as_str());
+    let repo: Repository = bincode::deserialize(response.text().unwrap().as_bytes()).unwrap();
+    repos.push(repo.clone());
+    repo
+}
+
+pub fn sync_repositories() {
+    let client = reqwest::blocking::Client::new();
+    let repos = load_repositories();
+    let mut new_repos: Vec<Repository> = vec![];
+    for repo in &repos {
+        push_repository(&repo.address, &mut new_repos, &client);
+    }
+}
+
 /// Load repository data from filesystem into memory
 pub fn load_repositories() -> Vec<Repository> {
     let repositories_file = &fs::read("/etc/gany/repos.sd");
@@ -195,6 +237,21 @@ pub fn load_repositories() -> Vec<Repository> {
         repositories
     } else {
         // Make file, then call function again
+        let client = reqwest::blocking::Client::new();
+        let mut repositories: Vec<Repository> = vec![];
+        let blank_packages: Vec<Package> = vec![];
+        let mut core_repo = Repository {
+            arch: std::env::consts::ARCH.to_string(),
+            name: "core".to_string(),
+            description: "The core software repository for Cards.".to_string(),
+            address: "".to_string(),
+            packages: blank_packages,
+        };
+        repositories.push(core_repo);
+        write_file(
+            "/etc/gany/repos.sd",
+            &bincode::serialize(&repositories).unwrap(),
+        );
         load_repositories()
     }
 }

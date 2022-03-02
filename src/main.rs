@@ -1,4 +1,5 @@
 #![feature(panic_info_message)]
+#![feature(error_reporter)]
 mod lib;
 
 use clap::{clap_app, crate_version, ArgMatches};
