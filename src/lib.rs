@@ -237,10 +237,9 @@ pub fn load_repositories() -> Vec<Repository> {
         repositories
     } else {
         // Make file, then call function again
-        let client = reqwest::blocking::Client::new();
         let mut repositories: Vec<Repository> = vec![];
         let blank_packages: Vec<Package> = vec![];
-        let mut core_repo = Repository {
+        let core_repo = Repository {
             arch: std::env::consts::ARCH.to_string(),
             name: "core".to_string(),
             description: "The core software repository for Cards.".to_string(),
