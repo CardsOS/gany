@@ -48,7 +48,7 @@ mimalloc = { version = "0.1.27", default-features = false }
 semver = "1.0.4"
 serde = "1.0.133"
 serde_yaml = "0.8.23"
-sha3 = "0.10.0"
+sha3 = "0.10.1"
 stopwatch = "0.0.7"
 tar = "0.4.38"
 
