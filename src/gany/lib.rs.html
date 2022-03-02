@@ -203,6 +203,63 @@
 <span id="198">198</span>
 <span id="199">199</span>
 <span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">anyhow::Context</span>;
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 <span class="kw">use</span> <span class="ident">sha3::Digest</span>;
@@ -211,7 +268,6 @@
 <span class="kw">use</span> <span class="ident">std::fs</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
 <span class="kw">use</span> <span class="ident">std::io::BufWriter</span>;
-
 <span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::option::Option</span>;
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
@@ -229,7 +285,9 @@
     <span class="doccomment">/// The version of the packaged software</span>
     <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The package names, along with their versions, that a package depends on</span>
-    <span class="kw">pub</span> <span class="ident">dependencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">String</span>)<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">dependencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The package names, along with their versions, that a package conflicts with</span>
+    <span class="kw">pub</span> <span class="ident">conflicts</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The files that a package owns, including potential ghost files</span>
     <span class="kw">pub</span> <span class="ident">files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The SHA3-256 hash of the LZ4-compressed archive the software is packaged in</span>
@@ -247,6 +305,8 @@
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
     <span class="doccomment">/// The address (URL or IP) of the repository</span>
     <span class="kw">pub</span> <span class="ident">address</span>: <span class="ident">String</span>,
+    <span class="doccomment">/// The packages within this repository</span>
+    <span class="kw">pub</span> <span class="ident">packages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Package</span><span class="op">&gt;</span>,
 }
 
 <span class="doccomment">/// Add a package to your software installation</span>
@@ -392,6 +452,45 @@
     <span class="ident">buffered_writer</span>.<span class="ident">flush</span>().<span class="ident">unwrap</span>(); <span class="comment">// Empty out the data from memory after we&#39;ve written to the file</span>
 }
 
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_repository</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
+    <span class="kw">let</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">matches</span>
+        .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
+        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a package was given&quot;</span>.<span class="ident">to_string</span>())
+        .<span class="ident">unwrap</span>();
+    <span class="ident">add_repository_with_url</span>(<span class="ident">url</span>.<span class="ident">to_owned</span>());
+}
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_repository_with_url</span>(<span class="ident">url</span>: <span class="ident">String</span>) -&gt; <span class="ident">Repository</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">repos</span> <span class="op">=</span> <span class="ident">load_repositories</span>();
+    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest::blocking::Client::new</span>();
+    <span class="kw">let</span> <span class="ident">repo</span> <span class="op">=</span> <span class="ident">push_repository</span>(<span class="kw-2">&amp;</span><span class="ident">url</span>, <span class="kw-2">&amp;mut</span> <span class="ident">repos</span>, <span class="kw-2">&amp;</span><span class="ident">client</span>);
+    <span class="ident">write_file</span>(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">repos</span>).<span class="ident">unwrap</span>());
+    <span class="ident">repo</span>
+}
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_repository</span>(
+    <span class="ident">url</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+    <span class="ident">repos</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span>,
+    <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">reqwest::blocking::Client</span>,
+) -&gt; <span class="ident">Repository</span> {
+    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">client</span>
+        .<span class="ident">get</span>(<span class="ident">url</span>)
+        .<span class="ident">send</span>()
+        .<span class="ident">expect</span>(<span class="macro">format!</span>(<span class="string">&quot;Unable to download repository data from \&#39;{}\&#39; … &quot;</span>, <span class="ident">url</span>).<span class="ident">as_str</span>());
+    <span class="kw">let</span> <span class="ident">repo</span>: <span class="ident">Repository</span> <span class="op">=</span> <span class="ident">bincode::deserialize</span>(<span class="ident">response</span>.<span class="ident">text</span>().<span class="ident">unwrap</span>().<span class="ident">as_bytes</span>()).<span class="ident">unwrap</span>();
+    <span class="ident">repos</span>.<span class="ident">push</span>(<span class="ident">repo</span>.<span class="ident">clone</span>());
+    <span class="ident">repo</span>
+}
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sync_repositories</span>() {
+    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest::blocking::Client::new</span>();
+    <span class="kw">let</span> <span class="ident">repos</span> <span class="op">=</span> <span class="ident">load_repositories</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_repos</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+    <span class="kw">for</span> <span class="ident">repo</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">repos</span> {
+        <span class="ident">push_repository</span>(<span class="kw-2">&amp;</span><span class="ident">repo</span>.<span class="ident">address</span>, <span class="kw-2">&amp;mut</span> <span class="ident">new_repos</span>, <span class="kw-2">&amp;</span><span class="ident">client</span>);
+    }
+}
+
 <span class="doccomment">/// Load repository data from filesystem into memory</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_repositories</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">repositories_file</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">fs::read</span>(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>);
@@ -400,6 +499,21 @@
         <span class="ident">repositories</span>
     } <span class="kw">else</span> {
         <span class="comment">// Make file, then call function again</span>
+        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest::blocking::Client::new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">repositories</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+        <span class="kw">let</span> <span class="ident">blank_packages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Package</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">core_repo</span> <span class="op">=</span> <span class="ident">Repository</span> {
+            <span class="ident">arch</span>: <span class="ident">std::env::consts::ARCH</span>.<span class="ident">to_string</span>(),
+            <span class="ident">name</span>: <span class="string">&quot;core&quot;</span>.<span class="ident">to_string</span>(),
+            <span class="ident">description</span>: <span class="string">&quot;The core software repository for Cards.&quot;</span>.<span class="ident">to_string</span>(),
+            <span class="ident">address</span>: <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
+            <span class="ident">packages</span>: <span class="ident">blank_packages</span>,
+        };
+        <span class="ident">repositories</span>.<span class="ident">push</span>(<span class="ident">core_repo</span>);
+        <span class="ident">write_file</span>(
+            <span class="string">&quot;/etc/gany/repos.sd&quot;</span>,
+            <span class="kw-2">&amp;</span><span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">repositories</span>).<span class="ident">unwrap</span>(),
+        );
         <span class="ident">load_repositories</span>()
     }
 }
