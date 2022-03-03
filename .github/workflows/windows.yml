@@ -30,7 +30,7 @@ jobs:
           libgany.a `
           libgany.dll.a
       - name: Upload Gany build artifacts to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: x86_64-gany.win32
           path: ./target/x86_64-pc-windows-gnu/release/x86_64-gany.win32.zip

@@ -34,7 +34,7 @@ jobs:
           libgany.so \
           libgany.a
       - name: Upload Gany build artifacts to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: x86_64-gany.gnu+linux
           path: ./target/x86_64-unknown-linux-gnu/release/x86_64-gany.gnu+linux.tar
