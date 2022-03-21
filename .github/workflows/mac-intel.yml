@@ -32,7 +32,7 @@ jobs:
           libgany.dylib \
           libgany.a
       - name: Upload Gany build artifacts to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: x86_64-gany.osx
           path: ./target/x86_64-apple-darwin/release/x86_64-gany.osx.tar
