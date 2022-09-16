@@ -1,10 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gany/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../gany/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gany/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
-                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
-                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gany/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gany/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gany/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -260,262 +254,261 @@
 <span id="254">254</span>
 <span id="255">255</span>
 <span id="256">256</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">anyhow::Context</span>;
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">sha3::Digest</span>;
-<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
-<span class="kw">use</span> <span class="ident">std::env</span>;
-<span class="kw">use</span> <span class="ident">std::fs</span>;
-<span class="kw">use</span> <span class="ident">std::fs::File</span>;
-<span class="kw">use</span> <span class="ident">std::io::BufWriter</span>;
-<span class="kw">use</span> <span class="ident">std::io::Write</span>;
-<span class="kw">use</span> <span class="ident">std::option::Option</span>;
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
-<span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>anyhow::Context;
+<span class="kw">use </span>serde::{Deserialize, Serialize};
+<span class="kw">use </span>sha3::Digest;
+<span class="kw">use </span>std::convert::TryInto;
+<span class="kw">use </span>std::env;
+<span class="kw">use </span>std::fs;
+<span class="kw">use </span>std::fs::File;
+<span class="kw">use </span>std::io::BufWriter;
+<span class="kw">use </span>std::io::Write;
+<span class="kw">use </span>std::option::Option;
+<span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>std::path::PathBuf;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="doccomment">/// The data associated with a package</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Package</span> {
-    <span class="doccomment">/// The CPU architecture intended for use with the packaged binaries</span>
-    <span class="kw">pub</span> <span class="ident">arch</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The name of the package</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The description of the package</span>
-    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The version of the packaged software</span>
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The package names, along with their versions, that a package depends on</span>
-    <span class="kw">pub</span> <span class="ident">dependencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The package names, along with their versions, that a package conflicts with</span>
-    <span class="kw">pub</span> <span class="ident">conflicts</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>)<span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The files that a package owns, including potential ghost files</span>
-    <span class="kw">pub</span> <span class="ident">files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The SHA3-256 hash of the LZ4-compressed archive the software is packaged in</span>
-    <span class="kw">pub</span> <span class="ident">keccak</span>: <span class="ident">String</span>,
+<span class="attribute">#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+</span><span class="doccomment">/// The data associated with a package
+</span><span class="kw">pub struct </span>Package {
+    <span class="doccomment">/// The CPU architecture intended for use with the packaged binaries
+    </span><span class="kw">pub </span>arch: String,
+    <span class="doccomment">/// The name of the package
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// The description of the package
+    </span><span class="kw">pub </span>description: String,
+    <span class="doccomment">/// The version of the packaged software
+    </span><span class="kw">pub </span>version: String,
+    <span class="doccomment">/// The package names, along with their versions, that a package depends on
+    </span><span class="kw">pub </span>dependencies: <span class="prelude-ty">Option</span>&lt;Vec&lt;(String, <span class="prelude-ty">Option</span>&lt;String&gt;)&gt;&gt;,
+    <span class="doccomment">/// The package names, along with their versions, that a package conflicts with
+    </span><span class="kw">pub </span>conflicts: <span class="prelude-ty">Option</span>&lt;Vec&lt;(String, <span class="prelude-ty">Option</span>&lt;String&gt;)&gt;&gt;,
+    <span class="doccomment">/// The files that a package owns, including potential ghost files
+    </span><span class="kw">pub </span>files: Vec&lt;String&gt;,
+    <span class="doccomment">/// The SHA3-256 hash of the LZ4-compressed archive the software is packaged in
+    </span><span class="kw">pub </span>keccak: String,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="doccomment">/// The data associated with a repository</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Repository</span> {
-    <span class="doccomment">/// The CPU architecture the repository supports</span>
-    <span class="kw">pub</span> <span class="ident">arch</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The name of the repository</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The description of the repository</span>
-    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The address (URL or IP) of the repository</span>
-    <span class="kw">pub</span> <span class="ident">address</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The packages within this repository</span>
-    <span class="kw">pub</span> <span class="ident">packages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Package</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Eq, PartialEq, Clone, Debug, Serialize, Deserialize)]
+</span><span class="doccomment">/// The data associated with a repository
+</span><span class="kw">pub struct </span>Repository {
+    <span class="doccomment">/// The CPU architecture the repository supports
+    </span><span class="kw">pub </span>arch: String,
+    <span class="doccomment">/// The name of the repository
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// The description of the repository
+    </span><span class="kw">pub </span>description: String,
+    <span class="doccomment">/// The address (URL or IP) of the repository
+    </span><span class="kw">pub </span>address: String,
+    <span class="doccomment">/// The packages within this repository
+    </span><span class="kw">pub </span>packages: Vec&lt;Package&gt;,
 }
 
-<span class="doccomment">/// Add a package to your software installation</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `PACKAGE_NAME` - Name of a package (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">_package_name</span> <span class="op">=</span> <span class="ident">matches</span>
-        .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No package name was given&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
+<span class="doccomment">/// Add a package to your software installation
+///
+/// # Arguments
+///
+/// * `PACKAGE_NAME` - Name of a package (required)
+</span><span class="kw">pub fn </span>add_package(matches: <span class="kw-2">&amp;</span>clap::ArgMatches) {
+    <span class="kw">let </span>_package_name = matches
+        .value_of(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
+        .with_context(|| <span class="string">&quot;No package name was given&quot;</span>.to_string())
+        .unwrap();
 }
 
-<span class="doccomment">/// Drop a package from your software installation</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `PACKAGE_NAME` - Name of a package (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">_package_name</span> <span class="op">=</span> <span class="ident">matches</span>
-        .<span class="ident">value_of</span>(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No package name was given&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
+<span class="doccomment">/// Drop a package from your software installation
+///
+/// # Arguments
+///
+/// * `PACKAGE_NAME` - Name of a package (required)
+</span><span class="kw">pub fn </span>drop_package(matches: <span class="kw-2">&amp;</span>clap::ArgMatches) {
+    <span class="kw">let </span>_package_name = matches
+        .value_of(<span class="string">&quot;PACKAGE_NAME&quot;</span>)
+        .with_context(|| <span class="string">&quot;No package name was given&quot;</span>.to_string())
+        .unwrap();
 }
 
-<span class="doccomment">/// Refresh the local package repository with one from a remote software distribution</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">refresh_remote_packages</span>() {}
+<span class="doccomment">/// Refresh the local package repository with one from a remote software distribution
+</span><span class="kw">pub fn </span>refresh_remote_packages() {}
 
-<span class="doccomment">/// Upgrade your local packages with newer versions held in a remote software distribution</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upgrade_packages</span>() {}
+<span class="doccomment">/// Upgrade your local packages with newer versions held in a remote software distribution
+</span><span class="kw">pub fn </span>upgrade_packages() {}
 
-<span class="doccomment">/// Package a piece of software for future distribution</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `PATH` - Path to a package source (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">matches</span>
-        .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a package source was given&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
-    <span class="ident">env::set_current_dir</span>(<span class="ident">path</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not read a package source at {}&quot;</span>, <span class="ident">path</span>))
-        .<span class="ident">unwrap</span>();
+<span class="doccomment">/// Package a piece of software for future distribution
+///
+/// # Arguments
+///
+/// * `PATH` - Path to a package source (required)
+</span><span class="kw">pub fn </span>create_package(matches: <span class="kw-2">&amp;</span>clap::ArgMatches) {
+    <span class="kw">let </span>path = matches
+        .value_of(<span class="string">&quot;PATH&quot;</span>)
+        .with_context(|| <span class="string">&quot;No path to a package source was given&quot;</span>.to_string())
+        .unwrap();
+    env::set_current_dir(path)
+        .with_context(|| <span class="macro">format!</span>(<span class="string">&quot;Could not read a package source at {}&quot;</span>, path))
+        .unwrap();
 
-    <span class="kw">let</span> <span class="ident">package_source_path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/src/&quot;</span>, <span class="ident">path</span>);
-    <span class="kw">let</span> <span class="ident">human_package_meta_file_path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}/manifest.yaml&quot;</span>, <span class="ident">path</span>);
-    <span class="kw">let</span> <span class="ident">human_package_meta_file</span> <span class="op">=</span> <span class="ident">fs::read_to_string</span>(<span class="ident">human_package_meta_file_path</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Unable to read package information&quot;</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">package_object</span>: <span class="ident">Package</span> <span class="op">=</span> <span class="ident">serde_yaml::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">human_package_meta_file</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Unable to process package information&quot;</span>);
-    <span class="kw">let</span> <span class="ident">bin_package_meta_output_path</span> <span class="op">=</span> <span class="macro">format!</span>(
+    <span class="kw">let </span>package_source_path = <span class="macro">format!</span>(<span class="string">&quot;{}/src/&quot;</span>, path);
+    <span class="kw">let </span>human_package_meta_file_path = <span class="macro">format!</span>(<span class="string">&quot;{}/manifest.yaml&quot;</span>, path);
+    <span class="kw">let </span>human_package_meta_file = fs::read_to_string(human_package_meta_file_path)
+        .expect(<span class="string">&quot;Unable to read package information&quot;</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>package_object: Package = serde_yaml::from_str(<span class="kw-2">&amp;</span>human_package_meta_file)
+        .expect(<span class="string">&quot;Unable to process package information&quot;</span>);
+    <span class="kw">let </span>bin_package_meta_output_path = <span class="macro">format!</span>(
         <span class="string">&quot;{}/out/{}-{}-{}.ganyinf&quot;</span>,
-        <span class="ident">path</span>, <span class="ident">package_object</span>.<span class="ident">arch</span>, <span class="ident">package_object</span>.<span class="ident">name</span>, <span class="ident">package_object</span>.<span class="ident">version</span>
+        path, package_object.arch, package_object.name, package_object.version
     );
-    <span class="kw">let</span> <span class="ident">package_output_path</span> <span class="op">=</span> <span class="macro">format!</span>(
+    <span class="kw">let </span>package_output_path = <span class="macro">format!</span>(
         <span class="string">&quot;{}/out/{}-{}-{}.gany&quot;</span>,
-        <span class="ident">path</span>, <span class="ident">package_object</span>.<span class="ident">arch</span>, <span class="ident">package_object</span>.<span class="ident">name</span>, <span class="ident">package_object</span>.<span class="ident">version</span>
+        path, package_object.arch, package_object.name, package_object.version
     );
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tar</span> <span class="op">=</span> <span class="ident">tar::Builder::new</span>(<span class="ident">Vec::new</span>());
-    <span class="ident">tar</span>.<span class="ident">append_dir_all</span>(<span class="string">&quot;.&quot;</span>, <span class="ident">package_source_path</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Failed to write archive&quot;</span>);
-    <span class="ident">tar</span>.<span class="ident">finish</span>().<span class="ident">expect</span>(<span class="string">&quot;Unable to finish writing archive&quot;</span>);
-    <span class="kw">let</span> <span class="ident">tar_bytes</span>: <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tar</span>.<span class="ident">get_ref</span>();
-    <span class="kw">let</span> <span class="ident">package_archive_file</span> <span class="op">=</span> <span class="ident">lz4_flex::compress_prepend_size</span>(<span class="ident">tar_bytes</span>);
-    <span class="ident">write_file</span>(<span class="kw-2">&amp;</span><span class="ident">package_output_path</span>, <span class="kw-2">&amp;</span><span class="ident">package_archive_file</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>tar = tar::Builder::new(Vec::new());
+    tar.append_dir_all(<span class="string">&quot;.&quot;</span>, package_source_path)
+        .expect(<span class="string">&quot;Failed to write archive&quot;</span>);
+    tar.finish().expect(<span class="string">&quot;Unable to finish writing archive&quot;</span>);
+    <span class="kw">let </span>tar_bytes: <span class="kw-2">&amp;</span>Vec&lt;u8&gt; = tar.get_ref();
+    <span class="kw">let </span>package_archive_file = lz4_flex::compress_prepend_size(tar_bytes);
+    write_file(<span class="kw-2">&amp;</span>package_output_path, <span class="kw-2">&amp;</span>package_archive_file);
 
-    <span class="kw">let</span> <span class="ident">package_archive_hash</span> <span class="op">=</span> <span class="ident">sha3::Sha3_256::digest</span>(<span class="kw-2">&amp;</span><span class="ident">package_archive_file</span>);
-    <span class="ident">package_object</span>.<span class="ident">keccak</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="ident">package_archive_hash</span>);
+    <span class="kw">let </span>package_archive_hash = sha3::Sha3_256::digest(<span class="kw-2">&amp;</span>package_archive_file);
+    package_object.keccak = <span class="macro">format!</span>(<span class="string">&quot;{:x}&quot;</span>, package_archive_hash);
 
-    <span class="kw">let</span> <span class="ident">bin_package_object</span> <span class="op">=</span> <span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">package_object</span>).<span class="ident">unwrap</span>();
-    <span class="ident">write_file</span>(<span class="kw-2">&amp;</span><span class="ident">bin_package_meta_output_path</span>, <span class="kw-2">&amp;</span><span class="ident">bin_package_object</span>);
+    <span class="kw">let </span>bin_package_object = bincode::serialize(<span class="kw-2">&amp;</span>package_object).unwrap();
+    write_file(<span class="kw-2">&amp;</span>bin_package_meta_output_path, <span class="kw-2">&amp;</span>bin_package_object);
 
-    <span class="kw">let</span> <span class="ident">uncompressed_size_bytes</span>: [<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> <span class="ident">package_archive_file</span>[<span class="number">0</span>..<span class="number">4</span>].<span class="ident">try_into</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">uncompressed_size</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::from_le_bytes</span>(<span class="ident">uncompressed_size_bytes</span>);
+    <span class="kw">let </span>uncompressed_size_bytes: [u8; <span class="number">4</span>] = package_archive_file[<span class="number">0</span>..<span class="number">4</span>].try_into().unwrap();
+    <span class="kw">let </span>uncompressed_size: u32 = u32::from_le_bytes(uncompressed_size_bytes);
     <span class="macro">println!</span>(
         <span class="string">&quot;Wrote package &#39;{}&#39; to filesystem (path: {}, uncompressed size: {} bytes, SHA3-256: {:x})&quot;</span>,
-        <span class="ident">package_object</span>.<span class="ident">name</span>, <span class="ident">package_output_path</span>, <span class="ident">uncompressed_size</span>, <span class="ident">package_archive_hash</span>
+        package_object.name, package_output_path, uncompressed_size, package_archive_hash
     );
 }
 
-<span class="doccomment">/// Extract a software package</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `PATH` - Path to a package file (required)</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extract_package</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">matches</span>
-        .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a package was given&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">path_buf</span> <span class="op">=</span> <span class="ident">PathBuf::from</span>(<span class="ident">path</span>);
-    <span class="kw">let</span> <span class="ident">package_file_name</span> <span class="op">=</span> <span class="ident">path_buf</span>.<span class="ident">file_stem</span>().<span class="ident">unwrap</span>().<span class="ident">to_str</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">package_parent_directory</span> <span class="op">=</span> <span class="ident">path_buf</span>.<span class="ident">parent</span>().<span class="ident">unwrap</span>().<span class="ident">to_str</span>().<span class="ident">unwrap</span>();
-    <span class="ident">env::set_current_dir</span>(<span class="ident">package_parent_directory</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> {
+<span class="doccomment">/// Extract a software package
+///
+/// # Arguments
+///
+/// * `PATH` - Path to a package file (required)
+</span><span class="kw">pub fn </span>extract_package(matches: <span class="kw-2">&amp;</span>clap::ArgMatches) {
+    <span class="kw">let </span>path = matches
+        .value_of(<span class="string">&quot;PATH&quot;</span>)
+        .with_context(|| <span class="string">&quot;No path to a package was given&quot;</span>.to_string())
+        .unwrap();
+    <span class="kw">let </span>path_buf = PathBuf::from(path);
+    <span class="kw">let </span>package_file_name = path_buf.file_stem().unwrap().to_str().unwrap();
+    <span class="kw">let </span>package_parent_directory = path_buf.parent().unwrap().to_str().unwrap();
+    env::set_current_dir(package_parent_directory)
+        .with_context(|| {
             <span class="macro">format!</span>(
                 <span class="string">&quot;Could not access parent directory of package file ({})&quot;</span>,
-                <span class="ident">package_parent_directory</span>
+                package_parent_directory
             )
         })
-        .<span class="ident">unwrap</span>();
+        .unwrap();
 
-    <span class="kw">let</span> <span class="ident">_package_file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not open package file&quot;</span>);
-    <span class="kw">let</span> <span class="ident">package_file_bytes</span> <span class="op">=</span> <span class="ident">fs::read</span>(<span class="ident">path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not read package file&quot;</span>);
-    <span class="kw">let</span> <span class="ident">package_extract_path</span> <span class="op">=</span> <span class="macro">format!</span>(
+    <span class="kw">let </span>_package_file = File::open(path).expect(<span class="string">&quot;Could not open package file&quot;</span>);
+    <span class="kw">let </span>package_file_bytes = fs::read(path).expect(<span class="string">&quot;Could not read package file&quot;</span>);
+    <span class="kw">let </span>package_extract_path = <span class="macro">format!</span>(
         <span class="string">&quot;{}/{}-contents/&quot;</span>,
-        <span class="ident">package_parent_directory</span>, <span class="ident">package_file_name</span>
+        package_parent_directory, package_file_name
     );
 
-    <span class="kw">let</span> <span class="ident">decompressed_package</span> <span class="op">=</span> <span class="ident">lz4_flex::decompress_size_prepended</span>(<span class="kw-2">&amp;</span><span class="ident">package_file_bytes</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not decompress package file&quot;</span>);
-    <span class="kw">let</span> <span class="ident">decompressed_package_bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">decompressed_package</span>[..];
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">extracted_package</span> <span class="op">=</span> <span class="ident">tar::Archive::new</span>(<span class="ident">decompressed_package_bytes</span>);
-    <span class="ident">extracted_package</span>
-        .<span class="ident">unpack</span>(<span class="kw-2">&amp;</span><span class="ident">package_extract_path</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not unpack package&quot;</span>);
+    <span class="kw">let </span>decompressed_package = lz4_flex::decompress_size_prepended(<span class="kw-2">&amp;</span>package_file_bytes)
+        .expect(<span class="string">&quot;Could not decompress package file&quot;</span>);
+    <span class="kw">let </span>decompressed_package_bytes = <span class="kw-2">&amp;</span>decompressed_package[..];
+    <span class="kw">let </span><span class="kw-2">mut </span>extracted_package = tar::Archive::new(decompressed_package_bytes);
+    extracted_package
+        .unpack(<span class="kw-2">&amp;</span>package_extract_path)
+        .expect(<span class="string">&quot;Could not unpack package&quot;</span>);
 
     <span class="macro">println!</span>(
         <span class="string">&quot;Extracted package file &#39;{}&#39; to filesystem (path: {})&quot;</span>,
-        <span class="ident">package_file_name</span>, <span class="ident">package_extract_path</span>
+        package_file_name, package_extract_path
     );
 }
 
-<span class="doccomment">/// Write a file to the filesystem</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Arguments</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `path` - The path to write the file to</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `data_to_write` - The data to write to the filesystem</span>
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write_file</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">data_to_write</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) {
-    <span class="ident">fs::create_dir_all</span>(<span class="ident">Path::new</span>(<span class="ident">path</span>).<span class="ident">parent</span>().<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>(); <span class="comment">// Create output path, write to file</span>
-    <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">unwrap</span>(); <span class="comment">// Create file which we will write to</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffered_writer</span> <span class="op">=</span> <span class="ident">BufWriter::new</span>(<span class="ident">file</span>); <span class="comment">// Create a buffered writer, allowing us to modify the file we&#39;ve just created</span>
-    <span class="ident">buffered_writer</span>
-        .<span class="ident">write_all</span>(<span class="ident">data_to_write</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;Could not write data to {}&quot;</span>, <span class="ident">path</span>))
-        .<span class="ident">unwrap</span>(); <span class="comment">// Write data to file</span>
-    <span class="ident">buffered_writer</span>.<span class="ident">flush</span>().<span class="ident">unwrap</span>(); <span class="comment">// Empty out the data from memory after we&#39;ve written to the file</span>
+<span class="doccomment">/// Write a file to the filesystem
+///
+/// # Arguments
+///
+/// * `path` - The path to write the file to
+///
+/// * `data_to_write` - The data to write to the filesystem
+</span><span class="attribute">#[inline(always)]
+</span><span class="kw">pub fn </span>write_file(path: <span class="kw-2">&amp;</span>str, data_to_write: <span class="kw-2">&amp;</span>[u8]) {
+    fs::create_dir_all(Path::new(path).parent().unwrap()).unwrap(); <span class="comment">// Create output path, write to file
+    </span><span class="kw">let </span>file = File::create(<span class="kw-2">&amp;</span>path).unwrap(); <span class="comment">// Create file which we will write to
+    </span><span class="kw">let </span><span class="kw-2">mut </span>buffered_writer = BufWriter::new(file); <span class="comment">// Create a buffered writer, allowing us to modify the file we&#39;ve just created
+    </span>buffered_writer
+        .write_all(data_to_write)
+        .with_context(|| <span class="macro">format!</span>(<span class="string">&quot;Could not write data to {}&quot;</span>, path))
+        .unwrap(); <span class="comment">// Write data to file
+    </span>buffered_writer.flush().unwrap(); <span class="comment">// Empty out the data from memory after we&#39;ve written to the file
+</span>}
+
+<span class="kw">pub fn </span>add_repository(matches: <span class="kw-2">&amp;</span>clap::ArgMatches) {
+    <span class="kw">let </span>url = matches
+        .value_of(<span class="string">&quot;PATH&quot;</span>)
+        .with_context(|| <span class="string">&quot;No path to a package was given&quot;</span>.to_string())
+        .unwrap();
+    add_repository_with_url(url.to_owned());
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_repository</span>(<span class="ident">matches</span>: <span class="kw-2">&amp;</span><span class="ident">clap::ArgMatches</span>) {
-    <span class="kw">let</span> <span class="ident">url</span> <span class="op">=</span> <span class="ident">matches</span>
-        .<span class="ident">value_of</span>(<span class="string">&quot;PATH&quot;</span>)
-        .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;No path to a package was given&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
-    <span class="ident">add_repository_with_url</span>(<span class="ident">url</span>.<span class="ident">to_owned</span>());
+<span class="kw">pub fn </span>add_repository_with_url(url: String) -&gt; Repository {
+    <span class="kw">let </span><span class="kw-2">mut </span>repos = load_repositories();
+    <span class="kw">let </span>client = reqwest::blocking::Client::new();
+    <span class="kw">let </span>repo = push_repository(<span class="kw-2">&amp;</span>url, <span class="kw-2">&amp;mut </span>repos, <span class="kw-2">&amp;</span>client);
+    write_file(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>, <span class="kw-2">&amp;</span>bincode::serialize(<span class="kw-2">&amp;</span>repos).unwrap());
+    repo
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_repository_with_url</span>(<span class="ident">url</span>: <span class="ident">String</span>) -&gt; <span class="ident">Repository</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">repos</span> <span class="op">=</span> <span class="ident">load_repositories</span>();
-    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest::blocking::Client::new</span>();
-    <span class="kw">let</span> <span class="ident">repo</span> <span class="op">=</span> <span class="ident">push_repository</span>(<span class="kw-2">&amp;</span><span class="ident">url</span>, <span class="kw-2">&amp;mut</span> <span class="ident">repos</span>, <span class="kw-2">&amp;</span><span class="ident">client</span>);
-    <span class="ident">write_file</span>(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">repos</span>).<span class="ident">unwrap</span>());
-    <span class="ident">repo</span>
+<span class="kw">pub fn </span>push_repository(
+    url: <span class="kw-2">&amp;</span>str,
+    repos: <span class="kw-2">&amp;mut </span>Vec&lt;Repository&gt;,
+    client: <span class="kw-2">&amp;</span>reqwest::blocking::Client,
+) -&gt; Repository {
+    <span class="kw">let </span>response = client
+        .get(url)
+        .send()
+        .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">&quot;Unable to download repository data from \&#39;{}\&#39; … &quot;</span>, url));
+    <span class="kw">let </span>repo: Repository = bincode::deserialize(response.text().unwrap().as_bytes()).unwrap();
+    repos.push(repo.clone());
+    repo
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_repository</span>(
-    <span class="ident">url</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">repos</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span>,
-    <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">reqwest::blocking::Client</span>,
-) -&gt; <span class="ident">Repository</span> {
-    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">client</span>
-        .<span class="ident">get</span>(<span class="ident">url</span>)
-        .<span class="ident">send</span>()
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">panic!</span>(<span class="string">&quot;Unable to download repository data from \&#39;{}\&#39; … &quot;</span>, <span class="ident">url</span>));
-    <span class="kw">let</span> <span class="ident">repo</span>: <span class="ident">Repository</span> <span class="op">=</span> <span class="ident">bincode::deserialize</span>(<span class="ident">response</span>.<span class="ident">text</span>().<span class="ident">unwrap</span>().<span class="ident">as_bytes</span>()).<span class="ident">unwrap</span>();
-    <span class="ident">repos</span>.<span class="ident">push</span>(<span class="ident">repo</span>.<span class="ident">clone</span>());
-    <span class="ident">repo</span>
-}
-
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sync_repositories</span>() {
-    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest::blocking::Client::new</span>();
-    <span class="kw">let</span> <span class="ident">repos</span> <span class="op">=</span> <span class="ident">load_repositories</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_repos</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-    <span class="kw">for</span> <span class="ident">repo</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">repos</span> {
-        <span class="ident">push_repository</span>(<span class="kw-2">&amp;</span><span class="ident">repo</span>.<span class="ident">address</span>, <span class="kw-2">&amp;mut</span> <span class="ident">new_repos</span>, <span class="kw-2">&amp;</span><span class="ident">client</span>);
+<span class="kw">pub fn </span>sync_repositories() {
+    <span class="kw">let </span>client = reqwest::blocking::Client::new();
+    <span class="kw">let </span>repos = load_repositories();
+    <span class="kw">let </span><span class="kw-2">mut </span>new_repos: Vec&lt;Repository&gt; = <span class="macro">vec!</span>[];
+    <span class="kw">for </span>repo <span class="kw">in </span><span class="kw-2">&amp;</span>repos {
+        push_repository(<span class="kw-2">&amp;</span>repo.address, <span class="kw-2">&amp;mut </span>new_repos, <span class="kw-2">&amp;</span>client);
     }
 }
 
-<span class="doccomment">/// Load repository data from filesystem into memory</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_repositories</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">repositories_file</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">fs::read</span>(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">file</span>) <span class="op">=</span> <span class="ident">repositories_file</span> {
-        <span class="kw">let</span> <span class="ident">repositories</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">bincode::deserialize</span>(<span class="ident">file</span>).<span class="ident">unwrap</span>();
-        <span class="ident">repositories</span>
-    } <span class="kw">else</span> {
-        <span class="comment">// Make file, then call function again</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">repositories</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Repository</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">let</span> <span class="ident">blank_packages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Package</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">let</span> <span class="ident">core_repo</span> <span class="op">=</span> <span class="ident">Repository</span> {
-            <span class="ident">arch</span>: <span class="ident">std::env::consts::ARCH</span>.<span class="ident">to_string</span>(),
-            <span class="ident">name</span>: <span class="string">&quot;core&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="ident">description</span>: <span class="string">&quot;The core software repository for Cards.&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="ident">address</span>: <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="ident">packages</span>: <span class="ident">blank_packages</span>,
+<span class="doccomment">/// Load repository data from filesystem into memory
+</span><span class="kw">pub fn </span>load_repositories() -&gt; Vec&lt;Repository&gt; {
+    <span class="kw">let </span>repositories_file = <span class="kw-2">&amp;</span>fs::read(<span class="string">&quot;/etc/gany/repos.sd&quot;</span>);
+    <span class="kw">if let </span><span class="prelude-val">Ok</span>(file) = repositories_file {
+        <span class="kw">let </span>repositories: Vec&lt;Repository&gt; = bincode::deserialize(file).unwrap();
+        repositories
+    } <span class="kw">else </span>{
+        <span class="comment">// Make file, then call function again
+        </span><span class="kw">let </span><span class="kw-2">mut </span>repositories: Vec&lt;Repository&gt; = <span class="macro">vec!</span>[];
+        <span class="kw">let </span>blank_packages: Vec&lt;Package&gt; = <span class="macro">vec!</span>[];
+        <span class="kw">let </span>core_repo = Repository {
+            arch: std::env::consts::ARCH.to_string(),
+            name: <span class="string">&quot;core&quot;</span>.to_string(),
+            description: <span class="string">&quot;The core software repository for Cards.&quot;</span>.to_string(),
+            address: <span class="string">&quot;&quot;</span>.to_string(),
+            packages: blank_packages,
         };
-        <span class="ident">repositories</span>.<span class="ident">push</span>(<span class="ident">core_repo</span>);
-        <span class="ident">write_file</span>(
+        repositories.push(core_repo);
+        write_file(
             <span class="string">&quot;/etc/gany/repos.sd&quot;</span>,
-            <span class="kw-2">&amp;</span><span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">repositories</span>).<span class="ident">unwrap</span>(),
+            <span class="kw-2">&amp;</span>bincode::serialize(<span class="kw-2">&amp;</span>repositories).unwrap(),
         );
-        <span class="ident">load_repositories</span>()
+        load_repositories()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gany" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (10f4ce324 2022-06-22)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gany" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0-nightly (cf9ed0dd5 2022-09-15)" ></div></body></html>
