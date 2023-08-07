@@ -51,7 +51,7 @@ serde = "1.0.136"
 serde_yaml = "0.8.23"
 sha3 = "0.10.1"
 stopwatch = "0.0.7"
-tar = "0.4.38"
+tar = "0.4.39"
 tempfile = "3.3.0"
 url = { version = "2.2.2", features = ["serde"] }
 
