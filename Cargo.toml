@@ -52,7 +52,7 @@ serde_yaml = "0.8.23"
 sha3 = "0.10.1"
 stopwatch = "0.0.7"
 tar = "0.4.38"
-tempfile = "3.3.0"
+tempfile = "3.7.1"
 url = { version = "2.2.2", features = ["serde"] }
 
 [profile.release]
