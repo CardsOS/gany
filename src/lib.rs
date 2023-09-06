@@ -181,7 +181,7 @@ pub fn extract_package(matches: &clap::ArgMatches) {
 #[inline(always)]
 pub fn write_file(path: &str, data_to_write: &[u8]) {
     fs::create_dir_all(Path::new(path).parent().unwrap()).unwrap(); // Create output path, write to file
-    let file = File::create(&path).unwrap(); // Create file which we will write to
+    let file = File::create(path).unwrap(); // Create file which we will write to
     let mut buffered_writer = BufWriter::new(file); // Create a buffered writer, allowing us to modify the file we've just created
     buffered_writer
         .write_all(data_to_write)
