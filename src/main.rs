@@ -64,7 +64,7 @@ fn main() {
 
     println!(
         "
-    Gany  Copyright (C) 2021, 2022  Emil Sayahi
+    Gany  Copyright (C) 2020-2024  Emil Sayahi
     This program comes with ABSOLUTELY NO WARRANTY; for details type `gany show -w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `gany show -c' for details.
@@ -82,20 +82,22 @@ fn main() {
             lib::drop_package(drop_matches);
         }
         Some(("refresh", _)) => {
-            lib::refresh_remote_packages();
+            lib::repository::fetch_repositories(true);
         }
         Some(("upgrade", _)) => {
             lib::upgrade_packages();
         }
-        Some(("package", package_matches)) => {
-            lib::create_package(package_matches);
-        }
-        Some(("extract", package_matches)) => {
-            lib::extract_package(package_matches);
-        }
         None => println!("{}", APP.get_about().unwrap()),
         _ => unreachable!(), // If all subcommands are defined above, anything else is unreachable!()
     }
+}
+
+pub fn add_repository(matches: &clap::ArgMatches) {
+    let url = matches
+        .value_of("PATH")
+        .with_context(|| "No path to a package was given".to_string())
+        .unwrap();
+    gany::add_repository_with_url(url.to_owned());
 }
 
 /// Shows information regarding the usage and handling of this software
